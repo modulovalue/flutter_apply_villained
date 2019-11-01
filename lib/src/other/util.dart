@@ -1,4 +1,3 @@
-
 /// Tracks cumulatively added durations inside of a mutable object.
 class ChoreographyDelayTracker {
   Duration _start;
