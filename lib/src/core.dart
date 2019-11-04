@@ -1,4 +1,5 @@
 import 'package:abstract_dart/abstract_dart.dart';
+import 'package:abstract_lerp/abstract_lerp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_apply/flutter_apply.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -91,43 +92,44 @@ VillainApplicator villainField<T>({
       delay: delay,
       applyVillain: (child, delay, inTime, loopMode) {
         return HookBuilder(
-            key: key != null ? ValueKey(key) : null,
-            builder: (context) {
-              final animationController = useAnimationController(
-                duration: inTime + delay,
-                keys: key != null ? [key] : [],
-                animationBehavior: AnimationBehavior.preserve,
-              );
+          key: key != null ? ValueKey(key) : null,
+          builder: (context) {
+            final animationController = useAnimationController(
+              duration: inTime + delay,
+              keys: key != null ? [key] : [],
+              animationBehavior: AnimationBehavior.preserve,
+            );
 
-              switch (loopMode) {
-                case VillainLoopMode.dont:
-                  useMemoized(() => animationController.forward(),
-                      key != null ? [key] : []);
-                  break;
-                case VillainLoopMode.repeat:
-                  useMemoized(() => animationController.repeat(),
-                      key != null ? [key] : []);
-                  break;
-                case VillainLoopMode.pingpong:
-                  useMemoized(() => animationController.repeat(reverse: true),
-                      key != null ? [key] : []);
-                  break;
-              }
+            switch (loopMode) {
+              case VillainLoopMode.dont:
+                useMemoized(() => animationController.forward(),
+                    key != null ? [key] : []);
+                break;
+              case VillainLoopMode.repeat:
+                useMemoized(() => animationController.repeat(),
+                    key != null ? [key] : []);
+                break;
+              case VillainLoopMode.pingpong:
+                useMemoized(() => animationController.repeat(reverse: true),
+                    key != null ? [key] : []);
+                break;
+            }
 
-              return AnimatedBuilder(
-                key: key != null ? ValueKey(key) : null,
-                animation: animationController,
-                builder: (context, snapshot) {
-                  final range = FieldLerp(from, to, field)
-                      .lerp(interpolationValue((Interval(
-                    delay.inMilliseconds.toDouble() /
-                        (inTime + delay).inMilliseconds.toDouble(),
-                    1.0,
-                    curve: curve ?? VillainApplicator.defaultCurve,
-                  ).transform)(animationController.value)));
-                  return applyOn(range) > child;
-                },
-              );
-            });
+            return AnimatedBuilder(
+              key: key != null ? ValueKey(key) : null,
+              animation: animationController,
+              builder: (context, snapshot) {
+                final range = FieldLerp(from, to, field)
+                    .lerp(interpolationValue((Interval(
+                  delay.inMilliseconds.toDouble() /
+                      (inTime + delay).inMilliseconds.toDouble(),
+                  1.0,
+                  curve: curve ?? VillainApplicator.defaultCurve,
+                ).transform)(animationController.value)));
+                return applyOn(range) > child;
+              },
+            );
+          },
+        );
       });
 }

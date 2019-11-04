@@ -4,7 +4,7 @@ import 'package:flutter_apply/flutter_apply.dart';
 import 'package:flutter_apply_villained/flutter_apply_villained.dart';
 
 VillainApplicator villainClipRect({
-  @required Rect Function(Size size, double value) clipper,
+  @required Rect Function(Size size, double t) clipper,
   double from = 0.0,
   double to = 1.0,
   Curve curve,
@@ -29,7 +29,7 @@ VillainApplicator villainClipRect({
 }
 
 VillainApplicator villainClipOval({
-  @required Rect Function(Size size, double value) clipper,
+  @required Rect Function(Size size, double t) clipper,
   double from = 0.0,
   double to = 1.0,
   Curve curve,

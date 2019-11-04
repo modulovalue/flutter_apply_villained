@@ -6,7 +6,7 @@ import 'package:flutter_apply/flutter_apply.dart';
 import 'package:flutter_apply_villained/flutter_apply_villained.dart';
 import 'package:intersperse/intersperse.dart';
 
-// find better category once abstraction clear
+// find better category for everything once the abstraction is clear.
 
 Widget villainizeText(
   String text, {

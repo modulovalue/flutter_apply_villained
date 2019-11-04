@@ -1,5 +1,4 @@
-
-
+import 'package:abstract_flutter/abstract_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_apply/flutter_apply.dart';
 import 'package:flutter_apply_villained/flutter_apply_villained.dart';
@@ -15,7 +14,7 @@ VillainApplicator villainPerspectiveRotate({
     curve: curve,
     to: to,
     from: from,
-    applyOn: (value) => perspective(value),
+    applyOn: perspective,
     interpolationValue: (a) => Offset(a, a),
     field: const OffsetField(),
   );

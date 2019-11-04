@@ -1,4 +1,5 @@
 import 'package:abstract_dart/abstract_dart.dart';
+import 'package:abstract_flutter/abstract_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_apply/flutter_apply.dart';
 import 'package:flutter_apply_villained/flutter_apply_villained.dart';
@@ -14,8 +15,7 @@ VillainApplicator villainTranslate({
     curve: curve,
     to: to,
     from: from,
-    applyOn: (value) =>
-        apply((child) => Transform.translate(offset: value, child: child)),
+    applyOn: translate,
     interpolationValue: (a) => Offset(a, a),
     field: const OffsetField(),
   );
@@ -58,8 +58,7 @@ VillainApplicator villainScale({
     curve: curve,
     to: to,
     from: from,
-    applyOn: (value) =>
-        apply((child) => Transform.scale(scale: value, child: child)),
+    applyOn: scale,
     interpolationValue: (a) => a,
     field: const DoubleField(),
   );
@@ -76,7 +75,7 @@ VillainApplicator villainRotate({
     curve: curve,
     to: to,
     from: from,
-    applyOn: (value) => rotate(value),
+    applyOn: rotate,
     interpolationValue: (a) => a,
     field: const DoubleField(),
   );
