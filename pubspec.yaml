@@ -18,7 +18,6 @@ dependencies:
   flutter_apply:
     git:
       url: git@github.com:modulovalue/flutter_apply.git
-      ref: 840a86fdfb9fef18732ade4e9af8cd4cf571d179
 
 dev_dependencies:
   extra_pedantic: ^1.1.1+3
